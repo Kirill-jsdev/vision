@@ -1,0 +1,267 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .brochure { max-width: 680px; background: var(--color-background-primary); }
+  .hero { background: linear-gradient(135deg, #EAF2FC 0%, #FFFFFF 100%); color: #0D2B4E; padding: 36px 32px 28px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; right: -40px; top: -40px; width: 220px; height: 220px; border-radius: 50%; background: rgba(29,158,117,0.12); }
+  .hero::after { content: ''; position: absolute; right: 40px; bottom: -60px; width: 160px; height: 160px; border-radius: 50%; background: rgba(37,99,235,0.10); }
+  .hero-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+  .dmc-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(37,99,235,0.08); border: 0.5px solid rgba(37,99,235,0.25); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: #185FA5; }
+  .hero h1 { font-size: 26px; font-weight: 500; line-height: 1.25; color: #0D2B4E; margin-bottom: 8px; }
+  .hero h1 span { color: #0F6E56; }
+  .hero .sub { font-size: 13px; color: #5A7498; line-height: 1.5; margin-top: 10px; }
+  .eye-diagram { display: flex; align-items: center; gap: 20px; margin-top: 22px; background: #F0F4FA; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px; }
+  .eye-step { text-align: center; flex: 1; }
+  .eye-circle { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .eye-label { font-size: 11px; color: #5A7498; line-height: 1.3; }
+  .eye-label strong { display: block; font-size: 12px; color: #0D2B4E; font-weight: 500; margin-bottom: 2px; }
+  .arrow-step { font-size: 18px; color: #1D9E75; flex-shrink: 0; }
+  .section { padding: 24px 28px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .section-label { font-size: 11px; font-weight: 500; color: #1D9E75; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .how-it-works { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .step-card { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: #0D2B4E; color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; margin-bottom: 10px; }
+  .step-card h4 { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .step-card p { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
+  .stat-box { text-align: center; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 8px; }
+  .stat-num { font-size: 26px; font-weight: 500; color: #0D2B4E; line-height: 1; }
+  .stat-num.green { color: #0F6E56; }
+  .stat-sub { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; line-height: 1.4; }
+  .benefits-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .benefits-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--color-text-primary); line-height: 1.5; }
+  .benefit-icon { width: 28px; height: 28px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+  .vs-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .vs-table th { background: #0D2B4E; color: white; padding: 8px 12px; font-weight: 500; }
+  .vs-table th:first-child { border-radius: 8px 0 0 0; }
+  .vs-table th:last-child { border-radius: 0 8px 0 0; }
+  .vs-table td { padding: 8px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); vertical-align: middle; }
+  .vs-table tr:nth-child(even) td { background: var(--color-background-secondary); }
+  .check { color: #0F6E56; font-weight: 500; }
+  .cross { color: #A32D2D; }
+  .ok-col { background: #E1F5EE !important; }
+  .children-section { background: #FFF8EE; border-left: 3px solid #EF9F27; padding: 16px 20px; border-radius: 0 12px 12px 0; }
+  .children-section h3 { font-size: 14px; font-weight: 500; color: #633806; margin-bottom: 6px; }
+  .children-section p { font-size: 12px; color: #854F0B; line-height: 1.6; }
+  .quote-block { background: #EFF6FF; border-left: 3px solid #2563EB; border-radius: 0 12px 12px 0; padding: 14px 18px; }
+  .quote-block p { font-size: 13px; color: #185FA5; line-height: 1.6; font-style: italic; }
+  .quote-block .quote-source { font-size: 11px; color: #378ADD; margin-top: 6px; font-style: normal; }
+  .faq-item { padding: 12px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .faq-a { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+  .progress-bar-wrap { margin: 6px 0 12px; }
+  .prog-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .prog-track { height: 6px; background: var(--color-background-secondary); border-radius: 3px; overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 3px; }
+  .history-section { background: #F7F9FC; }
+  .timeline { position: relative; padding-left: 28px; margin-top: 4px; }
+  .timeline::before { content: ''; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 1.5px; background: #B5D4F4; }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot { position: absolute; left: -23px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: #2563EB; border: 2px solid white; box-shadow: 0 0 0 1.5px #2563EB; }
+  .tl-dot.green { background: #1D9E75; box-shadow: 0 0 0 1.5px #1D9E75; }
+  .tl-year { font-size: 11px; font-weight: 500; color: #185FA5; margin-bottom: 2px; }
+  .tl-year.green { color: #0F6E56; }
+  .tl-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+  .tl-text { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; }
+  .efficacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .efficacy-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px; }
+  .efficacy-card .eff-num { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .efficacy-card .eff-num.teal { color: #0F6E56; }
+  .efficacy-card .eff-num.blue { color: #185FA5; }
+  .efficacy-card .eff-study { font-size: 10px; color: var(--color-text-secondary); margin-top: 6px; font-style: italic; }
+  .efficacy-card p { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+  /* CTA секция — обновлённая */
+  .cta-section { background: #EAF2FC; padding: 28px 28px 24px; border-radius: 0 0 16px 16px; }
+  .cta-section h3 { font-size: 17px; font-weight: 500; color: #0D2B4E; margin-bottom: 6px; }
+  .cta-section .cta-sub { font-size: 12px; color: #5A7498; margin-bottom: 22px; line-height: 1.5; }
+
+  .cta-phone-block { background: #FFFFFF; border: 0.5px solid #E2E8F0; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+  .cta-phone-icon { width: 36px; height: 36px; border-radius: 50%; background: #1D9E75; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .cta-phone-info { flex: 1; }
+  .cta-phone-label { font-size: 10px; color: #5A7498; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .cta-phone-num { font-size: 18px; font-weight: 500; color: #0D2B4E; letter-spacing: 0.02em; }
+
+  .cta-contacts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .cta-contact { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #5A7498; }
+  .contact-icon { width: 30px; height: 30px; border-radius: 50%; background: #F0F4FA; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+
+  /* Кнопка локации */
+  .btn-location { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #0D2B4E; border: none; border-radius: 10px; padding: 14px 20px; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity .15s; }
+  .btn-location:hover { opacity: 0.92; }
+  .btn-location-icon { font-size: 18px; }
+  .btn-location-text { display: flex; flex-direction: column; align-items: flex-start; }
+  .btn-location-main { font-size: 14px; font-weight: 500; color: #0D2B4E; }
+  .btn-location-hint { font-size: 11px; color: #5A7498; font-weight: 400; margin-top: 1px; }
+
+  .divider-or { display: flex; align-items: center; gap: 10px; margin: 14px 0; }
+  .divider-or span { font-size: 11px; color: #94A9C4; }
+  .divider-or::before, .divider-or::after { content: ''; flex: 1; height: 0.5px; background: #E2E8F0; }
+</style>
+
+<div class="brochure">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-badges">
+        <span class="dmc-badge">👁 Ассоциация офтальмологов</span>
+        <span class="dmc-badge">✨ Проект «Счастье видеть»</span>
+      </div>
+      <svg width="90" height="52" viewBox="0 0 90 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-left:16px">
+        <path d="M4 10 Q10 5 16 10 Q22 15 28 10" stroke="#1D5FA8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M4 18 Q10 13 16 18 Q22 23 28 18" stroke="#2C7FC4" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M4 26 Q10 21 16 26 Q22 31 28 26" stroke="#5DA8DE" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <text x="36" y="27" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0D2B4E" letter-spacing="1">DMC</text>
+        <text x="36" y="39" font-family="Arial, sans-serif" font-size="7" fill="#185FA5" letter-spacing="2">KO'RISHBAXTI</text>
+      </svg>
+    </div>
+    <h1>Зрение <span>без очков</span> —<br>уже с первого утра</h1>
+    <p class="sub">Ортокератологические линзы: надеваете ночью,<br>днём видите ясно. Без операции. Доказано на 60+ лет практики.</p>
+    <div class="eye-diagram">
+      <div class="eye-step">
+        <div class="eye-circle" style="background:rgba(90,116,152,0.12);">😴</div>
+        <div class="eye-label"><strong>Вечер</strong>Надели линзы перед сном</div>
+      </div>
+      <div class="arrow-step">→</div>
+      <div class="eye-step">
+        <div class="eye-circle" style="background:rgba(93,200,165,0.25);">🌙</div>
+        <div class="eye-label"><strong>Ночь</strong>Линза мягко корректирует роговицу</div>
+      </div>
+      <div class="arrow-step">→</div>
+      <div class="eye-step">
+        <div class="eye-circle" style="background:rgba(93,200,165,0.35);">☀️</div>
+        <div class="eye-label"><strong>Утро</strong>Сняли — и весь день 100% зрение!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section history-section">
+    <div class="section-label">История метода</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1960-е — США</div><div class="tl-title">Рождение ортокератологии</div><div class="tl-text">Американский оптометрист Джордж Джессен первым описал метод уплощения роговицы жёсткими линзами. Идея: если линза меняет форму роговицы за ночь — днём очки не нужны.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1970–80-е — клинические испытания</div><div class="tl-title">Первые доказательства</div><div class="tl-text">Исследования в США и Европе подтвердили: роговица принимает новую форму обратимо и предсказуемо.</div></div>
+      <div class="tl-item"><div class="tl-dot green"></div><div class="tl-year green">1994–1998 — прорыв технологии</div><div class="tl-title">Линзы нового поколения CRT</div><div class="tl-text">Paragon и Euclid (США) создали линзы с обратной геометрией. В 2002 году FDA одобрило метод для широкого применения.</div></div>
+      <div class="tl-item"><div class="tl-dot green"></div><div class="tl-year green">2000-е — открытие эффекта у детей</div><div class="tl-title">ОК-линзы тормозят прогрессию миопии</div><div class="tl-text">Исследования в Гонконге и Японии: у детей, носящих ОК-линзы, глаз перестаёт вытягиваться. Это изменило детскую офтальмологию.</div></div>
+      <div class="tl-item"><div class="tl-dot green"></div><div class="tl-year green">Сегодня</div><div class="tl-title">Миллионы пациентов в 60+ странах</div><div class="tl-text">Метод одобрен FDA, CE, входит в стандарты ВОЗ по контролю миопии.</div></div>
+    </div>
+    <div style="margin-top: 22px;">
+      <div class="section-label" style="margin-bottom:10px;">Доказанная эффективность</div>
+      <div class="efficacy-grid">
+        <div class="efficacy-card"><div class="eff-num teal">−46%</div><p>замедление роста глазного яблока у детей</p><div class="eff-study">Cho et al., ROMIO, Гонконг, 2012</div></div>
+        <div class="efficacy-card"><div class="eff-num blue">7–14 дней</div><p>до стабильного зрения 100%</p><div class="eff-study">Paragon CRT clinical data, США</div></div>
+        <div class="efficacy-card"><div class="eff-num teal">до −6 дптр</div><p>диапазон коррекции, подтверждён FDA</p><div class="eff-study">FDA 510(k) clearance, 2002</div></div>
+        <div class="efficacy-card"><div class="eff-num blue">100%</div><p>обратимость при отмене ношения</p><div class="eff-study">Консенсус Европейской академии, 2019</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Как это работает</div>
+    <div class="how-it-works">
+      <div class="step-card"><div class="step-num">1</div><h4>Индивидуальная линза</h4><p>Изготавливается точно под карту вашей роговицы</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>Работает во сне</h4><p>За 6–8 ч безболезненно выравнивает поверхность роговицы</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>Эффект — весь день</h4><p>Зрение 100% держится до следующего вечера</p></div>
+      <div class="step-card"><div class="step-num">4</div><h4>Обратимо</h4><p>Роговица возвращается к прежней форме при отмене</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Цифры</div>
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num">60+</div><div class="stat-sub">лет мировой практики</div></div>
+      <div class="stat-box"><div class="stat-num green">100%</div><div class="stat-sub">сертифицирован FDA и ЕС</div></div>
+      <div class="stat-box"><div class="stat-num">до −6</div><div class="stat-sub">диоптрий</div></div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="progress-bar-wrap">
+        <div class="prog-label"><span>80% пациентов видят на 100% через 1–3 ночи</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:80%;background:#1D9E75;"></div></div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="prog-label"><span>Замедление прогрессии миопии у детей до 50%</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:50%;background:#2563EB;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Ваши преимущества</div>
+    <ul class="benefits-list">
+      <li><div class="benefit-icon">🏊</div>Плавание, спорт, пыль — без линз и очков</li>
+      <li><div class="benefit-icon">👧</div>Детям с 6 лет: тормозит ухудшение зрения</li>
+      <li><div class="benefit-icon">🚗</div>Автомобиль, экраны — без усталости от очков</li>
+      <li><div class="benefit-icon">💧</div>Нет сухости глаз, как от дневных линз</li>
+      <li><div class="benefit-icon">✈️</div>Одна пара линз на весь год</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Сравнение</div>
+    <table class="vs-table">
+      <thead><tr><th>Параметр</th><th>Очки</th><th>Дневные линзы</th><th class="ok-col" style="color:#0D2B4E;">ОК-линзы DMC ✦</th></tr></thead>
+      <tbody>
+        <tr><td>Свобода днём</td><td class="cross">✗</td><td>частично</td><td class="ok-col check">✓ полная</td></tr>
+        <tr><td>Замедление миопии</td><td class="cross">✗</td><td class="cross">✗</td><td class="ok-col check">✓ доказано</td></tr>
+        <tr><td>Без операции</td><td class="check">✓</td><td class="check">✓</td><td class="ok-col check">✓</td></tr>
+        <tr><td>Детям от 6 лет</td><td class="check">✓</td><td class="cross">сложно</td><td class="ok-col check">✓ идеально</td></tr>
+        <tr><td>Спорт, бассейн</td><td class="cross">✗</td><td class="cross">✗</td><td class="ok-col check">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="children-section">
+      <h3>🌱 Особенно важно для детей и подростков</h3>
+      <p>ОК-линзы — единственный нехирургический метод, доказавший замедление роста глазного яблока. Ночное ношение — днём ребёнок свободен: школа, секции, спорт.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Частые вопросы</div>
+    <div class="faq-item"><div class="faq-q">Больно ли носить ночью?</div><div class="faq-a">Нет. Линзы мягко прилегают к роговице. Большинство забывают, что они надеты, уже после первой недели.</div></div>
+    <div class="faq-item"><div class="faq-q">Что, если захочу прекратить?</div><div class="faq-a">Роговица полностью возвращается к исходной форме. Метод обратим — главное отличие от лазерной коррекции.</div></div>
+    <div class="faq-item"><div class="faq-q">Сколько времени до результата?</div><div class="faq-a">Улучшение после 1–3 ночей. Стабильное зрение 100% — через 7–14 дней.</div></div>
+    <div class="faq-item"><div class="faq-q">Подойдут ли мне?</div><div class="faq-a">При миопии до −6 дптр, астигматизме до −1.75 дптр. Врач определит на консультации.</div></div>
+  </div>
+
+  <!-- CTA — ОБНОВЛЁННЫЙ БЛОК -->
+  <div class="cta-section">
+    <h3>Готовы попробовать? Запишитесь на диагностику</h3>
+    <p class="cta-sub">Врач-офтальмолог проведёт полное обследование и скажет, подойдут ли вам ОК-линзы. Без обязательств.</p>
+
+    <!-- Единый колл-центр — главный акцент -->
+    <div class="cta-phone-block">
+      <div class="cta-phone-icon">📞</div>
+      <div class="cta-phone-info">
+        <div class="cta-phone-label">Единый колл-центр DMC</div>
+        <div class="cta-phone-num">+998 78 129-30-30</div>
+      </div>
+    </div>
+
+    <div class="divider-or"><span>или</span></div>
+
+    <!-- Кнопка подбора ближайшей локации -->
+    <button class="btn-location" id="btn-loc">
+      <span class="btn-location-icon">📍</span>
+      <div class="btn-location-text">
+        <span class="btn-location-main">Подобрать ближайшую клинику</span>
+        <span class="btn-location-hint">Оставьте заявку — мы перезвоним</span>
+      </div>
+      <span style="color:#5A7498;font-size:16px;">›</span>
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('btn-loc').addEventListener('click', function() {
+    // Разработчик сайта встраивает сюда форму обратной связи
+    // Placeholder для интеграции
+    alert('Форма обратной связи будет встроена разработчиком');
+  });
+</script>

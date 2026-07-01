@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ОК-линзы — Ортокератология — DMC Ko'rishbaxti</title>
+  <meta name="description" content="Ортокератологические линзы DMC: надеваете ночью — видите ясно весь день. Без операции. Детям с 6 лет. Доказано на 60+ лет практики." />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta property="og:title" content="ОК-линзы — Ортокератология — DMC Ko'rishbaxti" />
+  <meta property="og:description" content="Надеваете ночью — видите ясно весь день. Без операции. Детям с 6 лет." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== ОК-ЛИНЗЫ: page-specific styles ===== */
+
+    /* Hero badges */
+    .ok-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .ok-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(37,99,235,.08); border: 1px solid rgba(37,99,235,.25);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: .78rem; color: var(--accent-hover);
+    }
+
+    /* Eye diagram */
+    .eye-diagram {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px 20px; margin-top: 28px; flex-wrap: nowrap;
+    }
+    .eye-step { text-align: center; flex: 1; min-width: 0; }
+    .eye-circle {
+      width: 54px; height: 54px; border-radius: 50%;
+      margin: 0 auto 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.4rem;
+    }
+    .eye-label { font-size: .75rem; color: var(--muted); line-height: 1.4; }
+    .eye-label strong { display: block; font-size: .82rem; color: var(--text); font-weight: 600; margin-bottom: 2px; }
+    .arrow-step { font-size: 1.3rem; color: var(--green); flex-shrink: 0; }
+
+    /* Two-column layout for history section */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 11px; top: 6px; bottom: 6px;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), var(--green));
+    }
+    .tl-item { position: relative; margin-bottom: 22px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -25px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); border: 2.5px solid var(--white);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .tl-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+    .tl-year {
+      font-size: .7rem; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px;
+    }
+    .tl-year.green { color: var(--green-dark); }
+    .tl-title { font-family: var(--font-heading); font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+    .tl-text { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
+    /* Efficacy grid */
+    .efficacy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .efficacy-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+    .eff-num { font-family: var(--font-heading); font-size: 1.55rem; font-weight: 900; margin-bottom: 5px; }
+    .eff-num.teal { color: var(--green-dark); }
+    .eff-num.blue { color: var(--accent); }
+    .efficacy-card p { font-size: .84rem; color: var(--muted); line-height: 1.55; }
+    .eff-study { font-size: .7rem; color: var(--muted); margin-top: 6px; font-style: italic; }
+
+    /* How it works */
+    .hiw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hiw-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 20px;
+      box-shadow: var(--shadow); transition: box-shadow .2s, transform .2s;
+    }
+    .hiw-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .hiw-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--primary); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-size: .9rem; font-weight: 800;
+      margin-bottom: 12px; flex-shrink: 0;
+    }
+    .hiw-card h4 { font-family: var(--font-heading); font-size: .95rem; font-weight: 700; margin-bottom: 7px; }
+    .hiw-card p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-bottom: 28px;
+    }
+    .stat-box {
+      text-align: center; background: var(--white);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px 12px;
+    }
+    .stat-num {
+      font-family: var(--font-heading); font-size: 2.1rem; font-weight: 900;
+      color: var(--primary); line-height: 1; margin-bottom: 7px;
+    }
+    .stat-num.green { color: var(--green-dark); }
+    .stat-sub { font-size: .8rem; color: var(--muted); line-height: 1.45; }
+
+    /* Progress bars */
+    .prog-list { display: flex; flex-direction: column; gap: 16px; }
+    .prog-label { font-size: .9rem; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
+    .prog-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 4px; }
+
+    /* Benefits */
+    .benefits-ok { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .benefits-ok li {
+      display: flex; align-items: center; gap: 14px;
+      font-size: .95rem; line-height: 1.6;
+      padding: 14px 18px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .benefits-ok li:hover { border-color: var(--green); box-shadow: 0 2px 12px rgba(76,175,80,.12); }
+    .benefit-ico {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green-light); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+
+    /* Comparison table */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); }
+    .vs-table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 500px; }
+    .vs-table th {
+      background: var(--primary); color: var(--white);
+      padding: 13px 16px; font-family: var(--font-heading);
+      font-weight: 700; font-size: .82rem; text-align: left;
+    }
+    .vs-table th:first-child { border-radius: 12px 0 0 0; }
+    .vs-table th:last-child  { border-radius: 0 12px 0 0; }
+    .vs-th-ok { background: var(--green-dark) !important; }
+    .vs-table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      color: var(--text); vertical-align: middle; font-size: .88rem;
+    }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table tr:nth-child(even) td { background: var(--light); }
+    .vs-check { color: var(--green-dark); font-weight: 700; }
+    .vs-cross { color: var(--red); }
+    .vs-ok-col { background: var(--green-light) !important; }
+
+    /* Children highlight */
+    .children-highlight {
+      background: #FFF8EE; border-left: 4px solid #F59E0B;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 24px 28px; max-width: 700px;
+    }
+    .children-highlight h3 { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: #92400E; margin-bottom: 10px; }
+    .children-highlight p  { font-size: .92rem; color: #78350F; line-height: 1.75; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; max-width: 720px; }
+    .faq-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-family: var(--font-heading); font-size: .97rem; font-weight: 700; margin-bottom: 8px; }
+    .faq-a { font-size: .9rem; color: var(--muted); line-height: 1.75; }
+
+    /* CTA phone */
+    .cta-phone-block {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+      display: flex; align-items: center; gap: 14px;
+      max-width: 380px; margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .cta-phone-ico {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .cta-phone-lbl { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+    .cta-phone-num { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: var(--text); }
+    .divider-or {
+      display: flex; align-items: center; gap: 10px;
+      margin: 16px 0; max-width: 380px;
+    }
+    .divider-or span { font-size: .82rem; color: var(--muted); }
+    .divider-or::before, .divider-or::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; gap: 36px; }
+      .hiw-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .eye-diagram { gap: 10px; padding: 14px 16px; }
+      .eye-circle  { width: 46px; height: 46px; font-size: 1.2rem; }
+      .hiw-grid    { grid-template-columns: 1fr; gap: 12px; }
+      .efficacy-grid { grid-template-columns: 1fr 1fr; }
+      .cta-phone-block { max-width: 100%; }
+      .divider-or      { max-width: 100%; }
+    }
+
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .eye-diagram { flex-direction: column; gap: 14px; }
+      .eye-step   { display: flex; align-items: center; gap: 12px; text-align: left; flex: none; width: 100%; }
+      .eye-circle { margin: 0; }
+      .arrow-step { transform: rotate(90deg); }
+      .efficacy-grid { grid-template-columns: 1fr; }
+      .children-highlight { padding: 18px 20px; }
+    }
+
+    @media (max-width: 400px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">
+        <img src="images/logo-no-bg.svg" alt="Счастье Видеть" />
+      </div>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">Главная</a>
+      <a href="#how-it-works">Как работает</a>
+      <a href="#benefits">Преимущества</a>
+      <a href="#comparison">Сравнение</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a href="#cta" class="btn btn-header desktop-only" data-ga="oklenzy_header_cta">Записаться →</a>
+    <button class="burger" id="burger" aria-label="Меню" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" onclick="closeMobileNav()">← Главная</a>
+    <a href="#how-it-works" onclick="closeMobileNav()">Как работает</a>
+    <a href="#benefits" onclick="closeMobileNav()">Преимущества</a>
+    <a href="#comparison" onclick="closeMobileNav()">Сравнение</a>
+    <a href="#faq" onclick="closeMobileNav()">Вопросы</a>
+    <a href="#cta" class="btn btn-header" onclick="closeMobileNav()">📅 Записаться на диагностику</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-inner">
+    <div class="ok-badges">
+      <span class="ok-badge">👁 Ассоциация офтальмологов</span>
+      <span class="ok-badge">✨ Проект «Счастье видеть»</span>
+      <span class="ok-badge">🏆 Одобрено FDA и CE</span>
+    </div>
+    <h1 class="hero-title">Зрение <em>без очков</em> —<br>уже с первого утра</h1>
+    <p class="hero-desc">
+      Ортокератологические линзы: надеваете ночью, снимаете утром —<br>
+      и весь день видите ясно. Без операции. Доказано на 60+ лет практики.
+    </p>
+    <div class="eye-diagram">
+      <div class="eye-step">
+        <div class="eye-circle" style="background:rgba(100,116,139,.12);">😴</div>
+        <div class="eye-label"><strong>Вечер</strong>Надели линзы перед сном</div>
+      </div>
+      <div class="arrow-step">→</div>
+      <div class="eye-step">
+        <div class="eye-circle" style="background:rgba(76,175,80,.2);">🌙</div>
+        <div class="eye-label"><strong>Ночь</strong>Линза мягко корректирует роговицу</div>
+      </div>
+      <div class="arrow-step">→</div>
+      <div class="eye-step">
+        <div class="eye-circle" style="background:rgba(76,175,80,.38);">☀️</div>
+        <div class="eye-label"><strong>Утро</strong>Сняли — и весь день 100% зрение!</div>
+      </div>
+    </div>
+    <div class="hero-actions" style="margin-top:28px;">
+      <a href="#how-it-works" class="btn btn-accent" data-ga="oklenzy_hero_hiw">Как это работает ↓</a>
+      <a href="#cta" class="btn btn-ghost" data-ga="oklenzy_hero_cta">Записаться на диагностику</a>
+    </div>
+  </div>
+</section>
+
+<!-- ИСТОРИЯ МЕТОДА -->
+<section class="section section--light" id="history">
+  <div class="container">
+    <div class="section-label">История метода</div>
+    <h2 class="section-heading">60+ лет мировой практики</h2>
+    <p class="section-sub">Ортокератология прошла путь от научной гипотезы до мирового стандарта контроля миопии.</p>
+    <div class="two-col">
+      <div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1960-е — США</div>
+            <div class="tl-title">Рождение ортокератологии</div>
+            <div class="tl-text">Американский оптометрист Джордж Джессен первым описал метод уплощения роговицы жёсткими линзами: если линза меняет форму роговицы за ночь — днём очки не нужны.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1970–80-е — клинические испытания</div>
+            <div class="tl-title">Первые доказательства</div>
+            <div class="tl-text">Исследования в США и Европе подтвердили: роговица принимает новую форму обратимо и предсказуемо.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot green"></div>
+            <div class="tl-year green">1994–1998 — прорыв</div>
+            <div class="tl-title">Линзы нового поколения CRT</div>
+            <div class="tl-text">Paragon и Euclid создали линзы с обратной геометрией. В 2002 году FDA одобрило метод для широкого применения.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot green"></div>
+            <div class="tl-year green">2000-е — открытие для детей</div>
+            <div class="tl-title">ОК-линзы тормозят прогрессию миопии</div>
+            <div class="tl-text">Исследования в Гонконге и Японии: у детей, носящих ОК-линзы, глаз перестаёт вытягиваться. Это изменило детскую офтальмологию.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot green"></div>
+            <div class="tl-year green">Сегодня</div>
+            <div class="tl-title">Миллионы пациентов в 60+ странах</div>
+            <div class="tl-text">Метод одобрен FDA, CE, входит в стандарты ВОЗ по контролю миопии.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:14px;">Доказанная эффективность</div>
+        <div class="efficacy-grid">
+          <div class="efficacy-card">
+            <div class="eff-num teal">−46%</div>
+            <p>замедление роста глазного яблока у детей</p>
+            <div class="eff-study">Cho et al., ROMIO, Гонконг, 2012</div>
+          </div>
+          <div class="efficacy-card">
+            <div class="eff-num blue">7–14 дней</div>
+            <p>до стабильного зрения 100%</p>
+            <div class="eff-study">Paragon CRT clinical data, США</div>
+          </div>
+          <div class="efficacy-card">
+            <div class="eff-num teal">до −6 дптр</div>
+            <p>диапазон коррекции, подтверждён FDA</p>
+            <div class="eff-study">FDA 510(k) clearance, 2002</div>
+          </div>
+          <div class="efficacy-card">
+            <div class="eff-num blue">100%</div>
+            <p>обратимость при отмене ношения</p>
+            <div class="eff-study">Консенсус Европейской академии, 2019</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАК РАБОТАЕТ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-label">Принцип действия</div>
+    <h2 class="section-heading">Как это работает</h2>
+    <p class="section-sub">Четыре шага к чёткому зрению без очков и линз в течение всего дня.</p>
+    <div class="hiw-grid">
+      <div class="hiw-card">
+        <div class="hiw-num">1</div>
+        <h4>Индивидуальная линза</h4>
+        <p>Изготавливается точно под карту вашей роговицы после детальной топографической диагностики у врача.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-num">2</div>
+        <h4>Работает во сне</h4>
+        <p>За 6–8 часов линза безболезненно и равномерно выравнивает поверхность роговицы, пока вы спите.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-num">3</div>
+        <h4>Эффект — весь день</h4>
+        <p>Утром снимаете — и зрение 100% держится до следующего вечера. Никаких очков, никаких дневных линз.</p>
+      </div>
+      <div class="hiw-card">
+        <div class="hiw-num">4</div>
+        <h4>Полностью обратимо</h4>
+        <p>При отмене ношения роговица возвращается к исходной форме — главное отличие от лазерной коррекции.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЦИФРЫ -->
+<section class="section section--light" id="stats">
+  <div class="container">
+    <div class="section-label">Цифры</div>
+    <h2 class="section-heading">Метод в цифрах</h2>
+    <p class="section-sub">Факты, подтверждённые клиническими исследованиями и многолетней практикой.</p>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-num">60+</div>
+        <div class="stat-sub">лет мировой практики</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num green">100%</div>
+        <div class="stat-sub">сертифицирован FDA и ЕС</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">до −6</div>
+        <div class="stat-sub">диоптрий коррекции</div>
+      </div>
+    </div>
+    <div class="prog-list">
+      <div>
+        <div class="prog-label">80% пациентов видят на 100% уже через 1–3 ночи</div>
+        <div class="prog-track"><div class="prog-fill" style="width:80%;background:var(--green);"></div></div>
+      </div>
+      <div>
+        <div class="prog-label">Замедление прогрессии миопии у детей до 50%</div>
+        <div class="prog-track"><div class="prog-fill" style="width:50%;background:var(--accent);"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="section" id="benefits">
+  <div class="container">
+    <div class="section-label">Ваши преимущества</div>
+    <h2 class="section-heading">Жизнь без ограничений</h2>
+    <p class="section-sub">ОК-линзы открывают возможности, которые недоступны при ношении очков или дневных линз.</p>
+    <ul class="benefits-ok" style="max-width:680px;">
+      <li><div class="benefit-ico">🏊</div><span>Плавание, спорт, активный отдых — без линз и очков весь день</span></li>
+      <li><div class="benefit-ico">👧</div><span>Детям с 6 лет: тормозит ухудшение зрения, пока глаз ещё растёт</span></li>
+      <li><div class="benefit-ico">🚗</div><span>Вождение, работа за экраном — без усталости от очков и ощущения линз</span></li>
+      <li><div class="benefit-ico">💧</div><span>Нет сухости глаз, как от дневных контактных линз</span></li>
+      <li><div class="benefit-ico">✈️</div><span>Одна пара линз на весь год — экономично и удобно в дороге</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- СРАВНЕНИЕ -->
+<section class="section section--light" id="comparison">
+  <div class="container">
+    <div class="section-label">Сравнение</div>
+    <h2 class="section-heading">ОК-линзы против альтернатив</h2>
+    <p class="section-sub">Сравните ОК-линзы с очками и дневными контактными линзами по ключевым параметрам.</p>
+    <div class="table-wrap">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>Очки</th>
+            <th>Дневные линзы</th>
+            <th class="vs-th-ok">ОК-линзы DMC ✦</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Свобода в течение дня</td>
+            <td class="vs-cross">✗ нет</td>
+            <td>частично</td>
+            <td class="vs-ok-col vs-check">✓ полная</td>
+          </tr>
+          <tr>
+            <td>Замедление прогрессии миопии</td>
+            <td class="vs-cross">✗</td>
+            <td class="vs-cross">✗</td>
+            <td class="vs-ok-col vs-check">✓ доказано</td>
+          </tr>
+          <tr>
+            <td>Без операции</td>
+            <td class="vs-check">✓</td>
+            <td class="vs-check">✓</td>
+            <td class="vs-ok-col vs-check">✓</td>
+          </tr>
+          <tr>
+            <td>Детям от 6 лет</td>
+            <td class="vs-check">✓</td>
+            <td class="vs-cross">сложно</td>
+            <td class="vs-ok-col vs-check">✓ идеально</td>
+          </tr>
+          <tr>
+            <td>Спорт и бассейн</td>
+            <td class="vs-cross">✗</td>
+            <td class="vs-cross">✗</td>
+            <td class="vs-ok-col vs-check">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ДЛЯ ДЕТЕЙ -->
+<section class="section" id="children">
+  <div class="container">
+    <div class="section-label">Особый случай</div>
+    <h2 class="section-heading">Особенно важно для детей</h2>
+    <p class="section-sub">Если зрение ребёнка ухудшается каждый год — ОК-линзы могут остановить этот процесс.</p>
+    <div class="children-highlight">
+      <h3>🌱 Детям и подросткам — особая польза</h3>
+      <p>ОК-линзы — единственный нехирургический метод, доказавший замедление роста глазного яблока. Ночное ношение означает полную свободу днём: школа, секции, спорт — без очков и дневных линз. Подходят детям с 6 лет при наблюдении офтальмолога.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ЧАСТЫЕ ВОПРОСЫ -->
+<section class="section section--light" id="faq">
+  <div class="container">
+    <div class="section-label">Частые вопросы</div>
+    <h2 class="section-heading">Ответы на ваши вопросы</h2>
+    <p class="section-sub">Самые распространённые вопросы об ОК-линзах — и честные ответы.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Больно ли носить линзы ночью?</div>
+        <div class="faq-a">Нет. Линзы мягко прилегают к роговице. Большинство пациентов забывают о них уже после первой недели ношения.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Что, если захочу прекратить лечение?</div>
+        <div class="faq-a">Роговица полностью возвращается к исходной форме. Метод полностью обратим — это его главное отличие от лазерной коррекции.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Сколько времени до результата?</div>
+        <div class="faq-a">Первое улучшение заметно уже после 1–3 ночей. Стабильное зрение 100% достигается через 7–14 дней.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Кому подходят ОК-линзы?</div>
+        <div class="faq-a">При миопии до −6 дптр и астигматизме до −1.75 дптр. Точный ответ врач даст на консультации после обследования роговицы.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗАПИСАТЬСЯ -->
+<section class="section section--dark" id="cta">
+  <div class="container">
+    <div class="section-label">Записаться</div>
+    <h2 class="section-heading">Готовы попробовать?</h2>
+    <p class="section-sub">Врач-офтальмолог проведёт полное обследование и скажет, подойдут ли вам ОК-линзы. Без обязательств.</p>
+
+    <div class="cta-phone-block">
+      <div class="cta-phone-ico">📞</div>
+      <div>
+        <div class="cta-phone-lbl">Единый колл-центр DMC</div>
+        <div class="cta-phone-num"><a href="tel:+998781293030" style="color:inherit;text-decoration:none;">+998 78 129-30-30</a></div>
+      </div>
+    </div>
+
+    <div class="divider-or"><span>или</span></div>
+
+    <a href="index.html#contact" class="btn btn-accent" data-ga="oklenzy_cta_form">📅 Оставить заявку онлайн →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-mark footer-logo-mark">
+            <img src="images/logo-no-bg.svg" alt="Счастье Видеть" loading="lazy" />
+          </div>
+          <div>
+            <div class="logo-name">Счастье Видеть</div>
+            <div class="logo-tagline">Ассоциация офтальмологов</div>
+          </div>
+        </div>
+        <p class="footer-about">Проект по раннему выявлению проблем со зрением у детей 3–17 лет в Узбекистане.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="fc-title">На этой странице</div>
+          <a href="#history">История метода</a>
+          <a href="#how-it-works">Как работает</a>
+          <a href="#benefits">Преимущества</a>
+          <a href="#comparison">Сравнение</a>
+          <a href="#faq">Вопросы и ответы</a>
+        </div>
+        <div class="footer-col">
+          <div class="fc-title">Контакты</div>
+          <a href="tel:+998781293030">+998 78 129 30 30</a>
+          <a href="mailto:info@korishbaxti.uz">info@korishbaxti.uz</a>
+          <a href="https://t.me/dmcNargiza" target="_blank" rel="noopener">Написать менеджеру</a>
+          <span>г. Ташкент, Узбекистан</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Счастье видеть · korishbaxti.uz</span>
+      <span>Информация носит справочный характер и не заменяет консультацию врача</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FAB -->
+<div class="fab-backdrop" id="fabBackdrop" onclick="closeFabMenu()"></div>
+<div class="fab-wrap" id="fabWrap">
+  <div class="fab-menu" id="fabMenu" role="menu" aria-hidden="true">
+    <a href="index.html#contact" class="fab-action" role="menuitem" data-ga="oklenzy_fab_form" onclick="closeFabMenu()">
+      <span class="fa-label">Оставить заявку</span>
+      <span class="fa-icon">📅</span>
+    </a>
+    <a href="https://t.me/dmcNargiza" target="_blank" rel="noopener"
+       class="fab-action" role="menuitem" data-ga="oklenzy_fab_telegram" onclick="closeFabMenu()">
+      <span class="fa-label">Написать в Telegram</span>
+      <span class="fa-icon">✈️</span>
+    </a>
+    <a href="tel:+998781293030" class="fab-action" role="menuitem" data-ga="oklenzy_fab_call">
+      <span class="fa-label">Позвонить</span>
+      <span class="fa-icon">📞</span>
+    </a>
+  </div>
+  <button class="fab-btn" id="fabBtn"
+          aria-label="Связаться с нами" aria-expanded="false"
+          onclick="toggleFabMenu()">
+    <span class="fab-icon-phone">📞</span>
+    <span class="fab-icon-close" aria-hidden="true">×</span>
+  </button>
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
