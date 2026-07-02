@@ -293,6 +293,15 @@ function prefillCallbackForm() {
   if (topic) { topic.value = 'callback'; }
 }
 
+/* ===== Doctors carousel ===== */
+function scrollDoctors(direction) {
+  const track = document.getElementById('doctorsCarousel');
+  if (!track) return;
+  const card = track.querySelector('.doctor-card');
+  const step = card ? card.getBoundingClientRect().width + 16 : track.clientWidth * 0.8;
+  track.scrollBy({ left: direction * step * 2, behavior: 'smooth' });
+}
+
 function showFormSuccess() {
   var content = document.getElementById('form-content');
   var success = document.getElementById('formSuccess');
