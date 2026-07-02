@@ -1436,7 +1436,7 @@ a  { color: inherit; text-decoration: none; }
   .callback-form-wrap { padding: 24px 20px; }
 
   .doctor-card { width: 140px; }
-  .doctors-arrow { display: none; }
+  .doctors-arrow { width: 34px; height: 34px; font-size: 1.1rem; }
 }
 
 @media (max-width: 560px) {
@@ -1458,6 +1458,9 @@ a  { color: inherit; text-decoration: none; }
   .zone-card-body { padding: 16px 20px 20px; }
 
   .doctors-carousel-wrap { margin: 0 -16px; padding: 0 16px; }
+  .doctor-card { width: 128px; }
+  .doctors-carousel { gap: 12px; }
+  .doctors-arrow { width: 30px; height: 30px; font-size: 1rem; }
 }
 
 @media (max-width: 400px) {
